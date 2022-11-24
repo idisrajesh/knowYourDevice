@@ -1,7 +1,10 @@
 function getYouCode() {
     document.getElementById('isMobile').innerHTML = "Mobile:" + isMobile();
     document.getElementById('isTablet').innerHTML = "Tablet:" + isMobileTablet();
+    document.getElementById('osName').innerHTML = getOSInfo();
+    document.getElementById('OsDetails').innerHTML = navigator.appVersion;
 }
+
 
 
 window.onload = function () {
@@ -24,4 +27,13 @@ function isMobileTablet() {
             check = true;
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
+}
+
+function getOSInfo() {
+    let OSName = "Unknown OS";
+    if (navigator.appVersion.indexOf("Win") != -1) OSName = "Windows";
+    if (navigator.appVersion.indexOf("Mac") != -1) OSName = "MacOS";
+    if (navigator.appVersion.indexOf("X11") != -1) OSName = "UNIX";
+    if (navigator.appVersion.indexOf("Linux") != -1) OSName = "Linux";
+    return OSName
 }
