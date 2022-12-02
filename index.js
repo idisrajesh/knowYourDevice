@@ -1,9 +1,9 @@
 function getYouCode() {
     document.getElementById('isMobile').innerHTML = "Mobile:" + isMobile();
-    document.getElementById('isTablet').innerHTML = "Tablet:" + isMobileTablet();
+    document.getElementById('isTablet').innerHTML = "Tablet:" + isMobile() && isMobileTablet();
     document.getElementById('osName').innerHTML = getOSInfo();
     document.getElementById('OsDetails').innerHTML = navigator.appVersion;
-    document.getElementById('browserName').innerHTML=getBrowser();
+    document.getElementById('browserName').innerHTML=getBrowser().toString();
 }
 
 
@@ -37,8 +37,9 @@ function isMobileTablet() {
 
 
 function getOSInfo() {
+
     let OSName = "Unknown OS";
-    if (!isMobile() && !isMobileTablet()) {
+    if (!isMobile()) {
         if (navigator.appVersion.indexOf("Win") != -1) OSName = "Windows";
         if (navigator.appVersion.indexOf("Mac") != -1) OSName = "MacOS";
         if (navigator.appVersion.indexOf("X11") != -1) OSName = "UNIX";
@@ -84,7 +85,7 @@ function getBrowser() {
     // return currentBrowser;
 
 
-    navigator.saysWho = (() => {
+    navigator.browserInfo = (() => {
         const { userAgent } = navigator
         let match = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []
         let temp
@@ -116,7 +117,7 @@ function getBrowser() {
           match.splice(1, 1, temp[1])
         }
       
-        return match.join(' ')
+        return { 'browser': match[0], 'version': match[1] };
       })()
       
       console.log(navigator.saysWho) // outputs: `Chrome 89`
