@@ -12,13 +12,6 @@ onload = function () {
     getYouCode();
 }
 
-var nVer = navigator.appVersion;
-var nAgt = navigator.userAgent;
-var browserName  = navigator.appName;
-var fullVersion  = ''+parseFloat(navigator.appVersion); 
-var majorVersion = parseInt(navigator.appVersion,10);
-var nameOffset,verOffset,ix;
-
 function isMobile() {
     let check = false;
     (function (a) {
@@ -29,9 +22,16 @@ function isMobile() {
 };
 
 function isMobileTablet() {
-    const userAgent = navigator.userAgent.toLowerCase();
-    const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
-    return isTablet;
+    // const userAgent = navigator.userAgent.toLowerCase();
+    // const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
+    // return isTablet;
+
+    var dpr = 1;
+    if(window.devicePixelRatio !== undefined) dpr = window.devicePixelRatio;
+    var width=window.outerWidth/dpr;
+    var height=window.outerHeight/dpr;
+    var screenDiagonal = Math.sqrt(width * width + height * height);
+    return screenDiagonal >= 672 ;
 }
 
 
@@ -72,14 +72,52 @@ function getMobileOperatingSystem() {
 }
 
 function getBrowser() {
-    let currentBrowser = 'Not known';
-    if (navigator.userAgent.indexOf('Chrome') !== -1) { currentBrowser = 'Google Chrome'; }
-    else if (navigator.userAgent.indexOf('Firefox') !== -1) { currentBrowser = 'Mozilla Firefox'; }
-    else if (navigator.userAgent.indexOf('MSIE') !== -1) { currentBrowser = 'Internet Exployer'; }
-    else if (navigator.userAgent.indexOf('Edge') !== -1) { currentBrowser = 'Edge'; }
-    else if (navigator.userAgent.indexOf('Safari') !== -1) { currentBrowser = 'Safari'; }
-    else if (navigator.userAgent.indexOf('Opera') !== -1) { currentBrowser = 'Opera'; }
-    else { console.log('Others'); }
+    // let currentBrowser = 'Not known';
+    // if (navigator.userAgent.indexOf('Chrome') !== -1) { currentBrowser = 'Google Chrome'; }
+    // else if (navigator.userAgent.indexOf('Firefox') !== -1) { currentBrowser = 'Mozilla Firefox'; }
+    // else if (navigator.userAgent.indexOf('MSIE') !== -1) { currentBrowser = 'Internet Exployer'; }
+    // else if (navigator.userAgent.indexOf('Edge') !== -1) { currentBrowser = 'Edge'; }
+    // else if (navigator.userAgent.indexOf('Safari') !== -1) { currentBrowser = 'Safari'; }
+    // else if (navigator.userAgent.indexOf('Opera') !== -1) { currentBrowser = 'Opera'; }
+    // else { console.log('Others'); }
   
-    return currentBrowser;
+    // return currentBrowser;
+
+
+    navigator.saysWho = (() => {
+        const { userAgent } = navigator
+        let match = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []
+        let temp
+      
+        if (/trident/i.test(match[1])) {
+          temp = /\brv[ :]+(\d+)/g.exec(userAgent) || []
+      
+          return `IE ${temp[1] || ''}`
+        }
+      
+        if (match[1] === 'Chrome') {
+          temp = userAgent.match(/\b(OPR|Edge)\/(\d+)/)
+      
+          if (temp !== null) {
+            return temp.slice(1).join(' ').replace('OPR', 'Opera')
+          }
+      
+          temp = userAgent.match(/\b(Edg)\/(\d+)/)
+      
+          if (temp !== null) {
+            return temp.slice(1).join(' ').replace('Edg', 'Edge (Chromium)')
+          }
+        }
+      
+        match = match[2] ? [ match[1], match[2] ] : [ navigator.appName, navigator.appVersion, '-?' ]
+        temp = userAgent.match(/version\/(\d+)/i)
+      
+        if (temp !== null) {
+          match.splice(1, 1, temp[1])
+        }
+      
+        return match.join(' ')
+      })()
+      
+      console.log(navigator.saysWho) // outputs: `Chrome 89`
   }
