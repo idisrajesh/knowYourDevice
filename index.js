@@ -3,7 +3,7 @@ function getYouCode() {
     document.getElementById('isTablet').innerHTML = "Tablet:" + isMobile() && isMobileTablet();
     document.getElementById('osName').innerHTML = getOSInfo();
     //document.getElementById('OsDetails').innerHTML = navigator.appVersion;
-    document.getElementById('browserName').innerHTML=getBrowser();
+    document.getElementById('browserName').innerHTML=getBrowserName();
 }
 
 
