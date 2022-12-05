@@ -1,6 +1,6 @@
 function getYouCode() {
     document.getElementById('isMobile').innerHTML = "Mobile:" + isMobile();
-    document.getElementById('isTablet').innerHTML = "Tablet:" + isMobile() && isMobileTablet();
+    document.getElementById('isTablet').innerHTML = "Tablet:" + isMobileTablet();
     document.getElementById('osName').innerHTML = getOSInfo();
     //document.getElementById('OsDetails').innerHTML = navigator.appVersion;
     document.getElementById('browserName').innerHTML=getBrowserName();
@@ -28,7 +28,7 @@ function isMobileTablet() {
     var width=window.outerWidth/dpr;
     var height=window.outerHeight/dpr;
     var screenDiagonal = Math.sqrt(width * width + height * height);
-    return screenDiagonal >= 672 ;
+    return screenDiagonal >= 672 && isMobile();
 }
 
 
