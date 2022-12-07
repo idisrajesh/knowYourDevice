@@ -50,7 +50,7 @@ function DeviceType()
 function getOSInfo() {
 
     let OSName = "Unknown OS";
-    if (!isMobile()) {
+    if (!isMobile) {
         if (navigator.appVersion.indexOf("Win") != -1) OSName = "Windows";
         if (navigator.appVersion.indexOf("Mac") != -1) OSName = "MacOS";
         if (navigator.appVersion.indexOf("X11") != -1) OSName = "UNIX";
