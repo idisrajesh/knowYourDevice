@@ -29,7 +29,7 @@ let isTablet= function isMobileTablet() {
     return screenDiagonal >= 672 && isMobile;
 }
 
-export function DeviceType()
+function DeviceType()
 {
   if(!isMobile && !isTablet)
   {
@@ -41,7 +41,7 @@ export function DeviceType()
   }
 }
 
-export function getOSInfo() {
+function getOSInfo() {
 
     let OSName = "Unknown OS";
     if (!isMobile()) {
@@ -78,7 +78,7 @@ let mobileOsName= function getMobileOperatingSystem() {
 }
 
 
-  export function getBrowserName() {
+  function getBrowserName() {
         // The order matters here, and this may report false positives for unlisted browsers.          
       let userAgent=navigator.userAgent;
 
