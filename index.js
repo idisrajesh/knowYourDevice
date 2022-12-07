@@ -19,15 +19,19 @@ let isMobile = function isMobile() {
     return check;
 };
 
-let isTablet= function isMobileTablet() { 
+// let isTablet= function isMobileTablet() { 
 
-    let dpr = 1;
-    if(window.devicePixelRatio !== undefined) dpr = window.devicePixelRatio;
-    let width=window.outerWidth/dpr;
-    let height=window.outerHeight/dpr;
-    let screenDiagonal = Math.sqrt(width * width + height * height);
-    return screenDiagonal >= 672 && isMobile;
-}
+//     let dpr = 1;
+//     if(window.devicePixelRatio !== undefined) dpr = window.devicePixelRatio;
+//     let width=window.outerWidth/dpr;
+//     let height=window.outerHeight/dpr;
+//     let screenDiagonal = Math.sqrt(width * width + height * height);
+//     return screenDiagonal >= 672 && isMobile;
+// }
+
+const userAgent = navigator.userAgent.toLowerCase();
+const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
+console.log(isTablet)
 
 function DeviceType()
 {
