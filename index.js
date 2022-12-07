@@ -116,3 +116,4 @@ let mobileOsName= function getMobileOperatingSystem() {
   }
   const browserName = getBrowserName();
   console.log(`You are using: ${browserName}`) 
+  console.log(`${isMobile}`)
