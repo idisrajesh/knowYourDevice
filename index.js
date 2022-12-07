@@ -76,7 +76,7 @@ function getMobileOperatingSystem() {
     }
 
     // iOS detection from: http://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !MSStream) {
+    if (/iPad|iPhone|iPod/.test(userAgent)) {
         return "iOS";
     }
 
