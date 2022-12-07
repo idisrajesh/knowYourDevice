@@ -57,13 +57,13 @@ function getOSInfo() {
         if (navigator.appVersion.indexOf("Linux") != -1) OSName = "Linux";
     }
     else {
-        OSName = mobileOsName;
+        OSName = getMobileOperatingSystem();
     }
 
     return OSName
 }
 
-let mobileOsName= function getMobileOperatingSystem() {
+function getMobileOperatingSystem() {
     let userAgent = navigator.userAgent || navigator.vendor || opera;
 
     // Windows Phone must come first because its UA also contains "Android"
