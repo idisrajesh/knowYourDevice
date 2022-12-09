@@ -116,6 +116,7 @@ function getMobileOperatingSystem() {
           return "unknown";
         } 
   }
-  const browserName = getBrowserName();
-  console.log(`You are using: ${browserName}`) 
-  console.log(`${isMobile}`)
+ console.log(`Navigator object: ${navigator}`)
+ console.log(`Navigator useragent: ${navigator.userAgent}`)
+ console.log(`Navigator vendor: ${navigator.vendor}`)
+ console.log(`Navigator appversion: ${navigator.appVersion}`)
