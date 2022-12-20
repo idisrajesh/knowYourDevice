@@ -3,12 +3,44 @@ function getYouCode() {
     document.getElementById('isTablet').innerHTML = "Tablet:" + isMobileTablet();
     document.getElementById('osName').innerHTML = getOSInfo();
     document.getElementById('OsDetails').innerHTML = navigator.appVersion;
+    document.getElementById('browserInfo').innerHTML = fnBrowserDetect();
 }
 
 
 
 window.onload = function () {
     getYouCode();
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+
+    // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+
+    // Safari 3.0+ "[object HTMLElementConstructor]" 
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+
+    // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+
+    // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+
+    // Chrome 1 - 71
+    var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+
+    // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+
+    var output = 'Detecting browsers by ducktyping:<hr>';
+    output += 'isFirefox: ' + isFirefox + '<br>';
+    output += 'isChrome: ' + isChrome + '<br>';
+    output += 'isSafari: ' + isSafari + '<br>';
+    output += 'isOpera: ' + isOpera + '<br>';
+    output += 'isIE: ' + isIE + '<br>';
+    output += 'isEdge: ' + isEdge + '<br>';
+    output += 'isBlink: ' + isBlink + '<br>';
+    document.body.innerHTML = output;
 }
 
 function isMobile() {
@@ -62,4 +94,26 @@ function getMobileOperatingSystem() {
     }
 
     return "unknown";
+}
+
+function fnBrowserDetect() {
+
+    let userAgent = navigator.userAgent;
+    let browserName;
+
+    if (userAgent.match(/chrome|chromium|crios/i)) {
+        browserName = "chrome";
+    } else if (userAgent.match(/firefox|fxios/i)) {
+        browserName = "firefox";
+    } else if (userAgent.match(/safari/i)) {
+        browserName = "safari";
+    } else if (userAgent.match(/opr\//i)) {
+        browserName = "opera";
+    } else if (userAgent.match(/edg/i)) {
+        browserName = "edge";
+    } else {
+        browserName = "No browser detection";
+    }
+
+    return browserName;
 }
