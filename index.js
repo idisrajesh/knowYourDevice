@@ -54,7 +54,7 @@ function DeviceType() {
         return "Desktop/Laptop";
     }
     else {
-        return isTablet ? "Tablet" : "Smartphone";
+        return checkTabletFromWindowScreenSize();
     }
 }
 
@@ -114,4 +114,13 @@ function fnBrowserDetect() {
     }
 
     return browserName;
+}
+
+function checkTabletFromWindowScreenSize() {
+    let viewportHeight = window.innerHeight;
+    let viewportWidth = window.innerWidth;
+    if (viewportWidth > 350 && viewportHeight > 620) {
+        return "Smartphone";
+    }
+    return "Tablet";
 }
