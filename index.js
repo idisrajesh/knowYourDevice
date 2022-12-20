@@ -50,7 +50,7 @@ const isMobile = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer
 console.log(isTablet)
 
 function DeviceType() {
-    if (!isMobile && !isTablet) {
+    if (!isMobile || !isTablet) {
         return "Desktop/Laptop";
     }
     else {
