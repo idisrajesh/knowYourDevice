@@ -77,6 +77,7 @@ function DeviceType() {
     return "Desktop/Laptop";
   }
   else {
+    document.getElementById("userAgent").innerHTML = userAgent;
     return checkTabletFromWindowScreenSize();
   }
 }
