@@ -73,8 +73,7 @@ function getBrowserName() {
 
 function DeviceType() {
   if (!isMobile && !isTablet) {
-    alert("mobile:" + isMobile);
-    alert("tablet:" + isTablet);
+    document.getElementById("userAgent").innerHTML = userAgent;
     return "Desktop/Laptop";
   }
   else {
