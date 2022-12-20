@@ -51,9 +51,10 @@ console.log(isTablet)
 
 function DeviceType() {
     if (!isMobile || !isTablet) {
-        return "Desktop/Laptop";
         alert("mobile:" + isMobile)
         alert("tablet:" + isTablet)
+        return "Desktop/Laptop";
+
     }
     else {
         return checkTabletFromWindowScreenSize();
