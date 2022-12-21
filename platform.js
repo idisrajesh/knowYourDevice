@@ -73,7 +73,7 @@ function getBrowserName() {
 
 function DeviceType() {
   if (!isMobile && !isTablet) {
-    if (getOSInfo() == "MacOs") {
+    if (getOSInfo() == "MacOS") {
       return checkTabletOrMobileOrDesktopFromWindowScreenSize();
     }
     return "Desktop/Laptop";
