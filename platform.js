@@ -74,8 +74,9 @@ function getBrowserName() {
 function DeviceType() {
   if (!isMobile && !isTablet) {
     document.getElementById("userAgent").innerHTML = "Height:" + window.innerHeight + "Width" + window.innerWidth;
-    if (getOSInfo() == "MacOs")
-      return "Desktop/Laptop";
+    if (getOSInfo() == "MacOs") { }
+    return "Desktop/Laptop";
+
   }
   else {
     document.getElementById("userAgent").innerHTML = "Height:" + window.innerHeight + "Width" + window.innerWidth;
