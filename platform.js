@@ -97,7 +97,7 @@ window.onload = function () {
 function checkTabletOrMobileOrDesktopFromWindowScreenSize() {
   let viewportHeight = window.innerHeight;
   let viewportWidth = window.innerWidth;
-  document.getElementById("userAgent") = "width " + viewportWidth + "height " + innerHeight
+  document.getElementById("userAgent").innerHTML = "width " + viewportWidth + "height " + innerHeight
   if (viewportWidth > 1024) {
     return "Desktop/Laptop";
   }
