@@ -74,13 +74,13 @@ function getBrowserName() {
 function DeviceType() {
   if (!isMobile && !isTablet) {
     if (getOSInfo() == "MacOs") {
-      return checkTableORDesktopFromWindowScreenWidth();
+      return checkTabletOrMobileOrDesktopFromWindowScreenSize();
     }
     return "Desktop/Laptop";
 
   }
   else {
-    return checkTabletFromWindowScreenSize();
+    return checkTabletOrMobileOrDesktopFromWindowScreenSize();
   }
 }
 
