@@ -73,13 +73,13 @@ function getBrowserName() {
 
 function DeviceType() {
   if (!isMobile && !isTablet) {
-    document.getElementById("userAgent").innerHTML = "Height:" + window.innerHeight + "Width" + window.innerWidth;
-    if (getOSInfo() == "MacOs") { }
+    if (getOSInfo() == "MacOs") {
+      return checkTableORDesktopFromWindowScreenWidth();
+    }
     return "Desktop/Laptop";
 
   }
   else {
-    document.getElementById("userAgent").innerHTML = "Height:" + window.innerHeight + "Width" + window.innerWidth;
     return checkTabletFromWindowScreenSize();
   }
 }
@@ -94,10 +94,22 @@ window.onload = function () {
   getYouCode();
 }
 
-function checkTabletFromWindowScreenSize() {
+function checkTabletOrMobileOrDesktopFromWindowScreenSize() {
   let viewportHeight = window.innerHeight;
   let viewportWidth = window.innerWidth;
-  if (viewportWidth > 350 && viewportHeight > 620) {
+  if (viewportWidth > 1024) {
+    return "Desktop/Laptop";
+  }
+  if (viewportWidth > 411 && viewportHeight > 844) {
+    return "Tablet";
+  }
+  return "Smartphone";
+}
+
+function checkTableORDesktopFromWindowScreenWidth() {
+  ;
+  let viewportWidth = window.innerWidth;
+  if (viewportWidth > 1024) {
     return "Tablet";
   }
   return "Smartphone";
